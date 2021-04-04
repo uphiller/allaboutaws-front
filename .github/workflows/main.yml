@@ -22,8 +22,8 @@ jobs:
       - name: Delete cache CloudFront
         uses: awact/cloudfront-action@master
         env:
-          SOURCE_PATH: 'index.html'
+          SOURCE_PATH: '/*'
           AWS_REGION: 'ap-northeast-2'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          DISTRIBUTION_ID: 'E3EN9OPE998YYM'
+          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
