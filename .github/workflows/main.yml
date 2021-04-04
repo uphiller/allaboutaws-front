@@ -14,14 +14,15 @@ jobs:
         uses: actions/checkout@master
 
       - name: Upload binary to S3 bucket
-        uses: qoqa/action-s3-cp@v1.1
+        uses: zdurham/s3-upload-github-action@master
+        with:
+          args: --acl public-read
         env:
+          FILE: ./index.html
+          AWS_REGION: 'ap-northeast-2'
+          S3_BUCKET: 'myspartabucket'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_S3_BUCKET: 'myspartabucket'
-          AWS_REGION: 'ap-northeast-2'
-          AWS_S3_PATH: '/index.html'
-          FILE: 'index.html'
 
 #      - name: Invalidate cache CloudFront
 #        uses: chetan/invalidate-cloudfront-action@master
