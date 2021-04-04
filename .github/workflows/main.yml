@@ -17,7 +17,7 @@ jobs:
         uses: prewk/s3-cp-action@master
         env:
           AWS_REGION: 'ap-northeast-2'
-          SOURCE: 's3://myspartabucket/'
+          SOURCE: 's3://myspartabucket/index.html'
           DEST: './index.html'
 
 #      - name: Invalidate cache CloudFront
