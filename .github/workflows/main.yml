@@ -15,9 +15,7 @@ jobs:
 
       - name: Deploy
         run: |
-          aws s3 cp index.html
-            --region ap-northeast-2 \
-            dist s3://myspartabucket/index.html
+          aws s3 cp s3://myspartabucket/index.html ./index.html
 
 
 #      - uses: jakejarvis/s3-sync-action@master
