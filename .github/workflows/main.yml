@@ -20,24 +20,15 @@ jobs:
           SOURCE: 's3://myspartabucket/'
           DEST: './index.html'
 
-#      - name: Upload S3
-#        uses: jakejarvis/s3-sync-action@master
-#        with:
-#          args: --acl public-read --follow-symlinks --delete
+#      - name: Invalidate cache CloudFront
+#        uses: chetan/invalidate-cloudfront-action@master
 #        env:
-#          AWS_S3_BUCKET: 'myspartabucket'
+#          DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
+#          PATHS: '/index.html'
 #          AWS_REGION: 'ap-northeast-2'
-#          SOURCE_DIR: 'template'
-
-      - name: Invalidate cache CloudFront
-        uses: chetan/invalidate-cloudfront-action@master
-        env:
-          DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
-          PATHS: '/index.html'
-          AWS_REGION: 'ap-northeast-2'
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          DEBUG: 1
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          DEBUG: 1
 
 
 #      - uses: jakejarvis/s3-sync-action@master
