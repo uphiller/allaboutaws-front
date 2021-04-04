@@ -24,10 +24,10 @@ jobs:
 
       - name: Invalidate cache CloudFront
         uses: chetan/invalidate-cloudfront-action@master
-          env:
-            DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
-            PATHS: '/index.html'
-            AWS_REGION: 'ap-northeast-2'
+        env:
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
+          PATHS: '/index.html'
+          AWS_REGION: 'ap-northeast-2'
 
 
 #      - uses: jakejarvis/s3-sync-action@master
