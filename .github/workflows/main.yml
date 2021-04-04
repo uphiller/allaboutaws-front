@@ -20,10 +20,10 @@ jobs:
           AWS_REGION: 'ap-northeast-2'
 
       - name: Invalidate cache CloudFront
-        uses: chetan/invalidate-cloudfront-action@master
+        uses: awact/cloudfront-action@master
         env:
-          DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
-          PATHS: '/index.html'
+          SOURCE_PATH: '/*'
           AWS_REGION: 'ap-northeast-2'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
