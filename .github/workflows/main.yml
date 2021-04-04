@@ -23,11 +23,11 @@ jobs:
 #          SOURCE_DIR: 'template'
 
       - name: Invalidate cache CloudFront
-        uses: awact/cloudfront-action@master
-        env:
-          SOURCE_PATH: '/index.html'
-          AWS_REGION: 'ap-northeast-2'
-          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+        uses: chetan/invalidate-cloudfront-action@master
+          env:
+            DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
+            PATHS: '/index.html'
+            AWS_REGION: 'ap-northeast-2'
 
 
 #      - uses: jakejarvis/s3-sync-action@master
