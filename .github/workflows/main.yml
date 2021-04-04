@@ -14,13 +14,12 @@ jobs:
         uses: actions/checkout@master
 
       - name: Upload binary to S3 bucket
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --follow-symlinks --delete
+        uses: qoqa/action-s3-cp@v1.1
         env:
-          AWS_S3_BUCKET: 'myspartabucket'
-          AWS_REGION: 'ap-northeast-2'   # optional: defaults to us-east-1
-          SOURCE_DIR: './index.html'      # optional: defaults to enti
+          AWS_S3_BUCKET: ${{ secrets.CHANGELOG_AWS_S3_BUCKET }}
+          AWS_REGION: 'ap-northeast-2'
+          AWS_S3_PATH: '/index.html'
+          FILE: 'index.html'
 
 #      - name: Invalidate cache CloudFront
 #        uses: chetan/invalidate-cloudfront-action@master
