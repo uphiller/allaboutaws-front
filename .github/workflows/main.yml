@@ -6,9 +6,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#    env:
+#      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - name: Checkout source code.
         uses: actions/checkout@master
@@ -16,7 +16,9 @@ jobs:
       - name: Upload binary to S3 bucket
         uses: qoqa/action-s3-cp@v1.1
         env:
-          AWS_S3_BUCKET: ${{ secrets.CHANGELOG_AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: 'myspartabucket'
           AWS_REGION: 'ap-northeast-2'
           AWS_S3_PATH: '/index.html'
           FILE: 'index.html'
