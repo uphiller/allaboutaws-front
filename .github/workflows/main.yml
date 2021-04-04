@@ -19,7 +19,7 @@ jobs:
         env:
           AWS_S3_BUCKET: myspartabucket
           AWS_REGION: 'ap-northeast-2'
-          SOURCE_DIR: '/index.html'
+          SOURCE_DIR: './index.html'
 
 
 #      - uses: jakejarvis/s3-sync-action@master
