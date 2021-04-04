@@ -6,24 +6,44 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - name: Checkout source code.
         uses: actions/checkout@master
-
-      - uses: jakejarvis/s3-sync-action@master
+      - name: Deploy
+        uses: reggionick/s3-deploy@v3
         with:
-          args: --acl public-read --follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: myspartabucket
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'ap-northeast-2'
+          folder: /index.html
+          bucket: myspartabucket
+          bucket-region: 'ap-northeast-2'
+          dist-id: ${{ secrets.DISTRIBUTION_ID }}
+          invalidation: /
 
-      - name: Invalidate cache CloudFront
-        uses: awact/cloudfront-action@master
-        env:
-          SOURCE_PATH: '/*'
-          AWS_REGION: 'ap-northeast-2'
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+
+#      - uses: jakejarvis/s3-sync-action@master
+#        with:
+#          args: --acl public-read --follow-symlinks --delete
+#        env:
+#          AWS_S3_BUCKET: myspartabucket
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          AWS_REGION: 'ap-northeast-2'
+#
+#        uses: shallwefootball/s3-upload-action@master
+#        id: S3
+#        with:
+#          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+#          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+#          aws_bucket: ${{ secrets.AWS_BUCKET }}
+#          source_dir: 'static'
+#
+#      - name: Invalidate cache CloudFront
+#        uses: awact/cloudfront-action@master
+#        env:
+#          SOURCE_PATH: '/*'
+#          AWS_REGION: 'ap-northeast-2'
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
