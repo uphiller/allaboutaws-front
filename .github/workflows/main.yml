@@ -13,13 +13,13 @@ jobs:
       - name: Checkout source code.
         uses: actions/checkout@master
       - name: Deploy
-        uses: reggionick/s3-deploy@v3
+        uses: jakejarvis/s3-sync-action@master
         with:
-          folder: /index.html
-          bucket: myspartabucket
-          bucket-region: 'ap-northeast-2'
-          dist-id: ${{ secrets.DISTRIBUTION_ID }}
-          invalidation: /
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: myspartabucket
+          AWS_REGION: 'us-west-1'
+          SOURCE_DIR: '/index.html'
 
 
 #      - uses: jakejarvis/s3-sync-action@master
