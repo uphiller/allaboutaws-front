@@ -13,15 +13,12 @@ jobs:
       - name: Checkout source code.
         uses: actions/checkout@master
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Deploy
+        uses: stcalica/s3-upload@master
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
-
-      - name: Deploy static site to S3 bucket
-        run: aws s3 cp ./index.html s3://myspartabucket --delete
+          bucket: 'myspartabucket'
+          package: 'index.html'
+          AWS_REGION: 'ap-northeast-2'
 
 
 #      - uses: jakejarvis/s3-sync-action@master
