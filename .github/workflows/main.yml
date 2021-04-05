@@ -23,7 +23,7 @@ jobs:
         env:
           AWS_S3_BUCKET: 'myspartabucket'
 
-      - name: Invalidate cache CloudFront
-        uses: awact/cloudfront-action@master
-        env:
-          SOURCE_PATH: 'index.html'
+#      - name: Invalidate cache CloudFront
+#        uses: awact/cloudfront-action@master
+#        env:
+#          SOURCE_PATH: '/*'
