@@ -23,6 +23,11 @@ jobs:
         env:
           AWS_S3_BUCKET: 'myspartabucket'
 
+      - name: Invalidate cache CloudFront
+        uses: ItsKarma/aws-cli@v1.70.0
+        with:
+          args:  cloudfront create-invalidation --distribution-id E3EN9OPE998YYM --paths '/*'
+
 #      - name: Invalidate cache CloudFront
 #        uses: awact/cloudfront-action@master
 #        env:
