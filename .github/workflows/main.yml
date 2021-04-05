@@ -29,6 +29,3 @@ jobs:
           DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
           PATHS: '/index.html'
         continue-on-error: true
-#        uses: awact/cloudfront-action@master
-#        env:
-#          SOURCE_PATH: '/*'
