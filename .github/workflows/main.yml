@@ -26,4 +26,4 @@ jobs:
       - name: Invalidate cache CloudFront
         uses: awact/cloudfront-action@master
         env:
-          SOURCE_PATH: '/index.html'
+          SOURCE_PATH: '/'
