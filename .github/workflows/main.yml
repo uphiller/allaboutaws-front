@@ -16,14 +16,14 @@ jobs:
       - name: Checkout source code.
         uses: actions/checkout@master
 
-#      - name: Upload binary to S3 bucket
-#        uses: jakejarvis/s3-sync-action@master
-#        with:
-#          args: --acl public-read --exclude '*' --include 'index.html'
-#        env:
-#          AWS_S3_BUCKET: 'myspartabucket'
+      - name: Upload binary to S3 bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --exclude '*' --include 'index.html'
+        env:
+          AWS_S3_BUCKET: 'myspartabucket'
 
       - name: Invalidate cache CloudFront
         uses: awact/cloudfront-action@master
         env:
-          SOURCE_PATH: 'index.html'
+          SOURCE_PATH: '/*'
