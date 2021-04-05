@@ -27,6 +27,10 @@ jobs:
         uses: ItsKarma/aws-cli@v1.70.0
         with:
           args:  cloudfront create-invalidation --distribution-id E3EN9OPE998YYM --paths '/*'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: 'ap-northeast-2'
 
 #      - name: Invalidate cache CloudFront
 #        uses: awact/cloudfront-action@master
